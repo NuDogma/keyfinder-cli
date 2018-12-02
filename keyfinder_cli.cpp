@@ -325,6 +325,19 @@ int main(int argc, char** argv)
     if (key != KeyFinder::SILENCE)
     {
         std::cout << selected_notation[key] << std::endl;
+        // Write the selected notation to the filename while keeping the extension.
+        if (true) {
+            std::string newfilename =
+                std::string(file_path).substr(
+                    0, std::string(file_path).find_last_of('.')) +
+                " (" + selected_notation[key] + ")" +
+                std::string(file_path).substr(
+                    std::string(file_path).find_last_of('.'),
+                    std::string(file_path).length());
+            std::cout << newfilename << std::endl;
+            std::rename(file_path, newfilename.c_str());
+        }
+
     }
 
     return 0;
